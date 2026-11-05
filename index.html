@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="pt-pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyFinance | Gestão de Despesas</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js" defer></script>
+  </head>
+
+  <body class="day night">
+    <!-- LOGIN ILUSTRATIVO -->
+    <header class="topbar">
+      <div class="logo">
+        <span class="logo-icon">€</span>
+        <h2>MyFinance</h2>
+      </div>
+
+      <nav>
+        <a href="#dashboard">Dashboard</a>
+        <a href="#despesas">Despesas</a>
+        <a href="#adicionar">Adicionar</a>
+      </nav>
+
+      <div class="user-info">
+        <div class="avatar" id="letter">U</div>
+        <span class="saudacao" id="saudacao">User</span>
+        <div><button id="login">Log in</button></div>
+        <div><button class="hidden" id="logout">Log out</button></div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- BOAS-VINDAS -->
+      <section class="welcome" id="dashboard">
+        <div>
+          <h1 class="saudacao" id="saudacao1"><span>Olá👋</span></h1>
+
+          <p>Bem-vindo à tua área de gestão financeira.</p>
+        </div>
+
+        <div>
+          <p id="DH">Hora:</p>
+        </div>
+      </section>
+
+      <!-- RESUMO FINANCEIRO -->
+      <section class="stats">
+        <article class="stat-card">
+          <div class="stat-icon purple">€</div>
+          <p>Total de despesas</p>
+          <h2>1.250,00 €</h2>
+          <small>Despesas registadas</small>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon green">↗</div>
+          <p>Despesas do mês</p>
+          <h2>450,00 €</h2>
+          <small>Novembro 2026</small>
+        </article>
+
+        <article class="stat-card">
+          <div class="stat-icon orange">▤</div>
+          <p>Número de despesas</p>
+          <h2>12</h2>
+          <small>Movimentos registados</small>
+        </article>
+      </section>
+
+      <!-- ADICIONAR DESPESA -->
+      <section class="content-card" id="adicionar">
+        <div class="section-title">
+          <h2>Adicionar despesa</h2>
+          <p>Regista uma nova despesa.</p>
+        </div>
+
+        <form id="form" action="#" method="post" class="expense-form">
+          <div class="form-group">
+            <label for="description">Descrição</label>
+            <input
+              type="text"
+              id="description"
+              name="description"
+              placeholder="Ex: Compras no supermercado"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="amount">Valor (€)</label>
+            <input
+              type="number"
+              id="amount"
+              name="amount"
+              placeholder="0,00"
+              min="0.01"
+              step="0.01"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="category">Categoria</label>
+            <select id="category" name="category" required>
+              <option value="">Selecionar categoria</option>
+              <option value="alimentacao">Alimentação</option>
+              <option value="transporte">Transportes</option>
+              <option value="lazer">Lazer</option>
+              <option value="saude">Saúde</option>
+              <option value="casa">Casa</option>
+              <option value="outros">Outros</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-primary">+ Adicionar despesa</button>
+        </form>
+      </section>
+
+      <!-- LISTA DE DESPESAS -->
+      <section class="content-card" id="despesas">
+        <div class="section-title">
+          <div>
+            <h2>As minhas despesas</h2>
+            <p>Consulta os teus movimentos financeiros.</p>
+          </div>
+        </div>
+
+        <!-- FILTROS -->
+        <div class="filters">
+          <label for="filter">Filtrar por categoria:</label>
+
+          <select id="filter" name="filter">
+            <option value="todas">Todas as categorias</option>
+            <option value="alimentacao">Alimentação</option>
+            <option value="transporte">Transportes</option>
+            <option value="lazer">Lazer</option>
+            <option value="saude">Saúde</option>
+            <option value="casa">Casa</option>
+            <option value="outros">Outros</option>
+          </select>
+        </div>
+
+        <!-- TABELA -->
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Categoria</th>
+
+                <th>Valor</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+
+            <tbody id="lista">
+              <tr>
+                <td>Compras supermercado</td>
+                <td>
+                  <span class="category food"> Alimentação </span>
+                </td>
+
+                <td class="amount">85,00 €</td>
+                <td class="actions">
+                  <a href="#editar" class="edit">Editar</a>
+                  <a href="#apagar" class="delete">Apagar</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="total">
+          <span>Total gasto:</span>
+          <strong>1.250,00 €</strong>
+        </div>
+      </section>
+
+      <!-- EDIÇÃO ILUSTRATIVA -->
+      <section class="content-card" id="editar">
+        <div class="section-title">
+          <h2>Editar despesa</h2>
+          <p>Exemplo de formulário de edição.</p>
+        </div>
+
+        <form action="#" method="post" class="expense-form">
+          <div class="form-group">
+            <label for="edit-description">Descrição</label>
+            <input
+              type="text"
+              id="edit-description"
+              value="Compras supermercado"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="edit-amount">Valor (€)</label>
+            <input type="number" id="edit-amount" value="85.00" step="0.01" />
+          </div>
+
+          <div class="form-group">
+            <label for="edit-category">Categoria</label>
+            <select id="edit-category">
+              <option>Alimentação</option>
+              <option>Transportes</option>
+              <option>Lazer</option>
+              <option>Saúde</option>
+              <option>Casa</option>
+              <option>Outros</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-primary">Guardar alterações</button>
+        </form>
+      </section>
+
+      <!-- API METEOROLÓGICA - EXEMPLO VISUAL -->
+      <section class="weather-card">
+        <div>
+          <h2>Previsão meteorológica</h2>
+          <p>Lisboa, Portugal</p>
+          <small>Dados ilustrativos — não ligados a uma API.</small>
+        </div>
+
+        <div class="weather-info">
+          <span class="weather-icon">☀️</span>
+          <div>
+            <h2>22 °C</h2>
+            <p>Céu limpo</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PERSONALIZAÇÃO -->
+      <section class="content-card theme-section">
+        <h2>Personalização</h2>
+        <p>Escolhe o tema da aplicação.</p>
+
+        <div class="theme-options">
+          <button onclick="day()">☀ Tema claro</button>
+          <button onclick="night()">🌙 Tema escuro</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 MyFinance | Gestão de despesas pessoais</p>
+    </footer>
+  </body>
+</html>
