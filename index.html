@@ -49,21 +49,14 @@
         <article class="stat-card">
           <div class="stat-icon purple">€</div>
           <p>Total de despesas</p>
-          <h2>1.250,00 €</h2>
+          <h2 id="totalH2">0 €</h2>
           <small>Despesas registadas</small>
-        </article>
-
-        <article class="stat-card">
-          <div class="stat-icon green">↗</div>
-          <p>Despesas do mês</p>
-          <h2>450,00 €</h2>
-          <small>Novembro 2026</small>
         </article>
 
         <article class="stat-card">
           <div class="stat-icon orange">▤</div>
           <p>Número de despesas</p>
-          <h2>12</h2>
+          <h2 id="nDespesas">0</h2>
           <small>Movimentos registados</small>
         </article>
       </section>
@@ -132,12 +125,12 @@
 
           <select id="filter" name="filter">
             <option value="todas">Todas as categorias</option>
-            <option value="alimentacao">Alimentação</option>
-            <option value="transporte">Transportes</option>
-            <option value="lazer">Lazer</option>
-            <option value="saude">Saúde</option>
-            <option value="casa">Casa</option>
-            <option value="outros">Outros</option>
+            <option value="Alimentação">Alimentação</option>
+            <option value="Transporte">Transportes</option>
+            <option value="Lazer">Lazer</option>
+            <option value="Saúde">Saúde</option>
+            <option value="Casa">Casa</option>
+            <option value="Outros">Outros</option>
           </select>
         </div>
 
@@ -148,32 +141,18 @@
               <tr>
                 <th>Descrição</th>
                 <th>Categoria</th>
-
                 <th>Valor</th>
                 <th>Ações</th>
               </tr>
             </thead>
 
-            <tbody id="lista">
-              <tr>
-                <td>Compras supermercado</td>
-                <td>
-                  <span class="category food"> Alimentação </span>
-                </td>
-
-                <td class="amount">85,00 €</td>
-                <td class="actions">
-                  <a href="#editar" class="edit">Editar</a>
-                  <a href="#apagar" class="delete">Apagar</a>
-                </td>
-              </tr>
-            </tbody>
+            <tbody id="lista"></tbody>
           </table>
         </div>
 
         <div class="total">
           <span>Total gasto:</span>
-          <strong>1.250,00 €</strong>
+          <strong id="total2">0 €</strong>
         </div>
       </section>
 
@@ -181,10 +160,9 @@
       <section class="content-card" id="editar">
         <div class="section-title">
           <h2>Editar despesa</h2>
-          <p>Exemplo de formulário de edição.</p>
         </div>
 
-        <form action="#" method="post" class="expense-form">
+        <form action="#" method="post" id="expense-form">
           <div class="form-group">
             <label for="edit-description">Descrição</label>
             <input
@@ -211,7 +189,7 @@
             </select>
           </div>
 
-          <button type="submit" class="btn-primary">Guardar alterações</button>
+          <button type="submit" id="btn-primary">Guardar alterações</button>
         </form>
       </section>
 
@@ -220,14 +198,11 @@
         <div>
           <h2>Previsão meteorológica</h2>
           <p>Lisboa, Portugal</p>
-          <small>Dados ilustrativos — não ligados a uma API.</small>
         </div>
 
         <div class="weather-info">
-          <span class="weather-icon">☀️</span>
           <div>
-            <h2>22 °C</h2>
-            <p>Céu limpo</p>
+            <h2 id="temperatura"></h2>
           </div>
         </div>
       </section>
@@ -238,8 +213,8 @@
         <p>Escolhe o tema da aplicação.</p>
 
         <div class="theme-options">
-          <button onclick="day()">☀ Tema claro</button>
-          <button onclick="night()">🌙 Tema escuro</button>
+          <button id="dia">☀ Tema claro</button>
+          <button id="escuro">🌙 Tema escuro</button>
         </div>
       </section>
     </main>
