@@ -1,15 +1,22 @@
+//constantes log in
 const nome = document.querySelector("#saudacao");
 const nome1 = document.querySelector("#saudacao1");
 const letter = document.querySelector("#letter");
 const buttonLogIn = document.querySelector("#login");
 const buttonLogOut = document.querySelector("#logout");
-const data1 = document.querySelector("#data");
+//constante data e hora
 const dataEHora = document.querySelector("#DH");
+//constante despesas
 const form = document.querySelector("#form");
 const lista = document.querySelector("#lista");
 const buttonEdit = document.querySelector("#btn-primary");
+const total1 = document.querySelector("#totalH2");
+const total2 = document.querySelector("#total2");
+const nDespesas = document.querySelector("#nDespesas");
+//constante api
 const celsius = document.querySelector("#temperatura");
-const dia = document.querySelector("#dia");
+//constantes temas
+const claro = document.querySelector("#dia");
 const escuro = document.querySelector("#escuro");
 
 ////////////////////////////////////////////////////
@@ -24,7 +31,7 @@ escuro.addEventListener("click", function () {
     localStorage.setItem("modo", "noite");
   }
 });
-dia.addEventListener("click", function () {
+claro.addEventListener("click", function () {
   if (document.body.classList.contains("night")) {
     document.body.classList.remove("night");
     document.body.classList.add("day");
@@ -69,6 +76,7 @@ buttonLogOut.addEventListener("click", function logOut() {
 
 function relogioAct() {
   const dataAtual = new Date();
+  //console.log(dataAtual);
   const dataHora = dataAtual.toLocaleDateString("pt-PT", {
     hour: "2-digit",
     minute: "2-digit",
@@ -77,8 +85,8 @@ function relogioAct() {
 
   dataEHora.innerText = "Data e Hora: " + dataHora;
 }
+//repetir a chamada da função relogioAct, de 1 em 1 segundo.
 
-relogioAct();
 setInterval(relogioAct, 1000);
 
 ////////////////////////////////////////////////////
@@ -89,9 +97,6 @@ let description;
 let amount;
 let category;
 let expenses = [];
-const total1 = document.querySelector("#totalH2");
-const total2 = document.querySelector("#total2");
-const nDespesas = document.querySelector("#nDespesas");
 
 ////////////////////////////////////////////////////
 //     adicionar despesas
@@ -123,9 +128,15 @@ function constroiDespesas() {
 ////////////////////////////////////////////////////
 //     filtrar despesas
 ////////////////////////////////////////////////////
-let filter = document.querySelectorAll("option");
-const filtrarDespesas = expenses.filter(function (expense) {
-  return categoria === "todos" || expense.category === categoria;
+let listaCategorias = document.querySelector("#filter");
+
+listaCategorias.addEventListener("change", function ncategoria() {
+  const categoriasFiltradas = expenses.filter(
+    (categoria) =>
+      listaCategorias.value === "todas" ||
+      categoria.category === listaCategorias.value,
+  );
+  constroiDespesas(categoriasFiltradas);
 });
 
 ////////////////////////////////////////////////////
@@ -133,7 +144,6 @@ const filtrarDespesas = expenses.filter(function (expense) {
 ////////////////////////////////////////////////////
 
 function removeItem(item) {
-  console.log(item);
   expenses.splice(item, 1);
   constroiDespesas();
 }
@@ -161,11 +171,6 @@ form.addEventListener("submit", function (e) {
 //    editar despesas
 ////////////////////////////////////////////////////
 
-buttonEdit.addEventListener("submit", function (e) {
-  e.preventDefault();
-  data1 = new FormData(this);
-});
-
 // {description: 'sss', category: 'alimentacao', amount: 33}
 
 ////////////////////////////////////////////////////
@@ -178,7 +183,6 @@ function api() {
 
   fetch(apiURL)
     .then((response) => response.json())
-
     .then((data) => {
       console.log(data);
       let currentHour = new Date().toISOString().slice(0, 13);
